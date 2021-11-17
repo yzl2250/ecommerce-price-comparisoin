@@ -57,6 +57,7 @@ if(st.button('Submit')):
     prices_listL = listsL['prices_list']
      
     dfL = pd.DataFrame(zip(titles_listL, prices_listL), columns=['ItemName', 'Price'])
+    dfL['Price'] = dfL['Price'].str.replace(',', '')
     dfL['Price'] = dfL['Price'].str.replace('RM', '').astype(float)
     dfL.sort_values(by=['Price'], inplace=True)
     dfL = dfL.reset_index(drop=True)
