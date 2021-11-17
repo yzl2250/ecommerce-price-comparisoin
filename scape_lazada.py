@@ -12,20 +12,21 @@ https://medium.com/@zfwong.wilson/web-scraping-e-commerce-sites-to-compare-price
 from selenium import webdriver
 from selenium.common.exceptions import *
 from selenium.common.exceptions import NoSuchElementException
+from webdriver_manager.chrome import ChromeDriverManager
 
 def scape_lazada(keyword, title_class, price_class):
-    webdriver_path = 'C://Users//shuhaili//Desktop//scaping//chromedriver.exe' # Enter the file directory of the Chromedriver
     Lazada_url = 'https://www.lazada.com.my'
     search_item = keyword # Chose this because I often search for coffee!
     
     # Select custom Chrome options
     options = webdriver.ChromeOptions()
-    options.add_argument('--headless') 
+    options.add_argument('--headless')
+    options.add_argument('--no-sandbox')
     options.add_argument('start-maximized') 
     options.add_argument('disable-infobars')
     options.add_argument('--disable-extensions')
     # Open the Chrome browser
-    browser = webdriver.Chrome(webdriver_path, options=options)
+    browser = webdriver.Chrome(ChromeDriverManager().install(), options=options)
     browser.get(Lazada_url)
     
     search_bar = browser.find_element_by_id('q')
