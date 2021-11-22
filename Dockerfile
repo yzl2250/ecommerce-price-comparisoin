@@ -41,7 +41,9 @@ RUN unzip /tmp/chromedriver.zip chromedriver -d /usr/local/bin/
  COPY . /app
 WORKDIR /app
 
-RUN chmod -R 775 /app
-RUN chown -R root /app
+RUN chmod -R 775 .
+# RUN chmod -R 775 /.wdm
+RUN chown -R root .
+# RUN chown -R root /.wdm
 
 CMD [ "python", "./price_comparison_lazada_shopee.py" ]
