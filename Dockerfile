@@ -45,6 +45,9 @@ RUN chgrp -R 0 /app && \
     chmod -R g=u /app
 RUN chgrp -R 0 /usr/local/bin/ && \
     chmod -R g=u /usr/local/bin/
+RUN chgrp -R 0 /usr/local/lib/python3.8/ && \
+    chmod -R g=u /usr/local/lib/python3.8/
+    
 # RUN chmod -R 775 .
 # RUN chmod -R 775 /.wdm
 # RUN chown -R root .
