@@ -34,13 +34,14 @@ RUN unzip /tmp/chromedriver.zip chromedriver -d /usr/local/bin/
 # RUN chmod -R 775 /home/node/app
 # RUN chown -R node:root /home/node/app
 
-RUN chmod -R 775 /usr/local/lib/python3.8/
-RUN chown -R root /usr/local/lib/python3.8/
 
 # Set display port as an environment variable
  # ENV DISPLAY=:99
  
  COPY . /app
 WORKDIR /app
+
+RUN chmod -R 775 /app
+RUN chown -R root /app
 
 CMD [ "python", "./price_comparison_lazada_shopee.py" ]
