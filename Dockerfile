@@ -1,5 +1,10 @@
 # Dockerfile, Image, Container
+
+
 FROM python:3.8
+
+# Base image is CentOS 7
+  
 
 # ADD price_comparison_lazada_shopee.py .
 # ADD scape_lazada.py .
@@ -37,20 +42,30 @@ RUN unzip /tmp/chromedriver.zip chromedriver -d /usr/local/bin/
 
 # Set display port as an environment variable
  # ENV DISPLAY=:99
+
  
  COPY . /app
 WORKDIR /app
 
-RUN chgrp -R 0 /app && \
-    chmod -R g=u /app
-RUN chgrp -R 0 /usr/local/bin/ && \
-    chmod -R g=u /usr/local/bin/
-RUN chgrp -R 0 /usr/local/lib/python3.8/ && \
-    chmod -R g=u /usr/local/lib/python3.8/
+# RUN chgrp -R 0 /app && \
+#     chmod -R g=u /app
+# RUN chgrp -R 0 /usr/local/bin/ && \
+#     chmod -R g=u /usr/local/bin/
+# RUN chgrp -R 0 /usr/local/lib/python3.8/ && \
+#     chmod -R g=u /usr/local/lib/python3.8/
+# 
+
+    
+RUN whoami
     
 # RUN chmod -R 775 .
 # RUN chmod -R 775 /.wdm
 # RUN chown -R root .
 # RUN chown -R root /.wdm
 
-CMD [ "python", "./price_comparison_lazada_shopee.py" ]
+# CMD [ "python", "./price_comparison_lazada_shopee.py" ]
+EXPOSE 8501
+
+ENTRYPOINT ["streamlit", "run"]
+
+CMD ["app.py"]
